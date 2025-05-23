@@ -1,0 +1,96 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.log
+*.pdb
+*.opendata
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+*.exe
+*.dll
+*.exp
+*.lib
+*.ilk
+*.winmd
+*.appx
+*.appxbundle
+*.pri
+*.resw
+*.xap
+*.sbn
+*.sbp
+*.sbr
+*.bsc
+*.scc
+*.tlog
+*.vspscc
+*.vssscc
+*.vspscc.xml
+*.vssscc.xml
+*.vc.db
+*.log
+*.ipch
+*.aps
+*.pch
+*.pgo
+*.iobj
+*.ipdb
+*.ncb
+*.opensdf
+*.sdf
+*.bak
+*.tmp
+*.swp
+*.obj
+*.idb
+*.pdb
+*.res
+*.lib
+*.sbr
+*.scc
+*.vsscc
+*.vssscc
+*.vsp
+*.vspx
+*.vspscc
+*.vssscc.xml
+
+# NuGet packages
+packages/
+*.nupkg
+*.snupkg
+*.cache
+*.bak
+*.log
+
+# Rider
+.idea/
+
+# Other common files
+*.csproj.user
+*.sln.user
+*.tmp
+*.temp
+*.backup
+*.zip
+*.rar
+*.7z
+
+# Config files (if you don't want them in source control)
+# appsettings.Development.json # You might want this for dev, but not appsettings.json or appsettings.Production.json
+# appsettings.json
+# appsettings.*.json # Be careful with this, if you want some settings tracked
+
+# User secrets (should never be committed)
+.microsoft/usersecrets/
+
+# For macOS
+.DS_Store
+
+# For Linux
+*~

@@ -1,0 +1,41 @@
+name: .NET Core CI
+
+on:
+  push:
+    branches: [ main ] # Triggers the workflow on pushes to the 'main' branch
+  pull_request:
+    branches: [ main ] # Triggers the workflow on pull requests targeting the 'main' branch
+  workflow_dispatch: # Allows you to manually trigger the workflow from the GitHub UI
+
+env:
+  DOTNET_VERSION: '8.0.x' # Specifies the .NET SDK version to use
+  BUILD_CONFIGURATION: 'Release' # Defines the build configuration (e.g., Debug or Release)
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # The operating system to run your job on (e.g., ubuntu-latest, windows-latest, macos-latest)
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4 # Action to check out your source code from the repository
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }} # Uses the .NET version defined in the env section
+
+    - name: Restore Dependencies
+      run: dotnet restore # Restores NuGet packages for all projects in the solution
+
+    - name: Build Project
+      # Assumes your solution (.sln) file is in the root or a standard location.
+      # If your solution is in a subfolder (e.g., 'src/MySolution.sln'),
+      # you might need to adjust the path: dotnet build src/MySolution.sln --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
+      run: dotnet build --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
+
+    - name: Run Tests
+      # This command finds and runs tests in all test projects within your solution.
+      # It expects test projects to be named following conventions (e.g., *.Tests.csproj).
+      # If your test project has a unique name or path, you might need to specify it:
+      # e.g., dotnet test BasicPaymentGateway.Tests/BasicPaymentGateway.Tests.csproj --configuration ${{ env.BUILD_CONFIGURATION }} --no-build
+      run: dotnet test --configuration ${{ env.BUILD_CONFIGURATION }} --no-build # --no-build prevents re-building, assuming it was built in the previous step
