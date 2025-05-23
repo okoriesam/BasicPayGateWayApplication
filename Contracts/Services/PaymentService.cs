@@ -29,8 +29,8 @@ namespace BasicPaymentGateway.Contracts.Services
         {
             try
             {
-                var BaseUrl = _configuration.GetSection("Pay_Stack_Details:PaystackUrl").Value;
-                var Key = _configuration.GetSection("Pay_Stack_Details:Test_secret").Value;
+                var BaseUrl = _configuration.GetSection("PayStackDetails:PaystackUrl").Value;
+                var Key = _configuration.GetSection("PayStackDetails:Test_secret").Value;
                 if (BaseUrl == null)
                 {
                     throw new Exception("No url or base endpoint provided");
@@ -71,8 +71,8 @@ namespace BasicPaymentGateway.Contracts.Services
         {
             try
             {
-                var BaseUrl = _configuration.GetSection("Pay_Stack_Details:PaystackUrl").Value;
-                var Key = _configuration.GetSection("Pay_Stack_Details:Test_secret").Value;
+                var BaseUrl = _configuration.GetSection("PayStackDetails:PaystackUrl").Value;
+                var Key = _configuration.GetSection("PayStackDetails:Test_secret").Value;
                 if(BaseUrl == null)
                 {
                     throw new Exception("No url or base endpoint provided");
