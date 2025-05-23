@@ -30,7 +30,7 @@ namespace BasicPaymentGateway.Contracts.Services
             try
             {
                 var BaseUrl = _configuration.GetSection("PayStackDetails:PaystackUrl").Value;
-                var Key = _configuration.GetSection("PayStackDetails:Test_secret").Value;
+                var Key = _configuration.GetSection("PayStackDetails:Testsecret").Value;
                 if (BaseUrl == null)
                 {
                     throw new Exception("No url or base endpoint provided");
@@ -89,7 +89,7 @@ namespace BasicPaymentGateway.Contracts.Services
                 var SerializePaystackPayload = new PayStackRequestModel
                 {
                     email = request.Email,
-                    amount = (request.Amount * 100).ToString(),
+                    amount = request.Amount.ToString(),
                     first_name = request.Name
                 };
 
@@ -132,15 +132,15 @@ namespace BasicPaymentGateway.Contracts.Services
                     throw new Exception("Payment gateway verification response did not contain expected data.");
                 }
                 var fetchPaymentResponse = new FetchPaymentResponse
-                { 
+                {
                     message = fullVerificationResponse.message,
                     payment = new Payment
                     {
-                        id = fullVerificationResponse.data.id.ToString(), 
+                        id = fullVerificationResponse.data.id.ToString(),
                         customer_name = request.Name,
                         customer_email = fullVerificationResponse.data.customer?.email,
-                        amount = (double)fullVerificationResponse.data.amount / 100, 
-                        status = fullVerificationResponse.data.status 
+                        amount = (double)fullVerificationResponse.data.amount,
+                        status = fullVerificationResponse.status.ToString()
                     }
                 };
 
