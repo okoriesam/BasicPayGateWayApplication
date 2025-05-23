@@ -46,20 +46,33 @@ namespace BasicPaymentGateway.Contracts.Services
 
                 var initiateResponseString = await _genericService.ConsumeRestAPI(endpoint, "", header, "get");
                 var initiate = JsonConvert.DeserializeObject<GetTransactionResponse>(initiateResponseString);
-
-                var finalResult = new FetchPaymentResponse
+                if(initiate.status == false)
                 {
-                    message = initiate.message,
-                    payment = new Payment
+                    FetchPaymentResponse response = new FetchPaymentResponse
                     {
-                        id = initiate.data.id.ToString(),
-                         status = initiate.status.ToString(),
-                          amount = initiate.data.amount,
-                           customer_email = initiate.data.customer.email,
-                            customer_name = initiate.data.customer.first_name 
-                    }
-                };
-                return finalResult;
+                        message = initiate.message,
+                        payment = null
+                    };
+                    return response;
+                }
+                else
+                {
+                    FetchPaymentResponse finalResult = new FetchPaymentResponse
+                    {
+                        message = initiate.message,
+                        payment = new Payment
+                        {
+                            id = initiate.data.id.ToString(),
+                            status = initiate.status.ToString(),
+                            amount = initiate.data.amount,
+                            customer_email = initiate.data.customer.email,
+                            customer_name = initiate.data.customer.first_name
+                        }
+                    };
+                    return finalResult;
+                    
+                }
+
             }
             catch (Exception)
             {
