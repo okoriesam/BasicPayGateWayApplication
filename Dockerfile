@@ -4,8 +4,12 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY *.csproj ./
+
+# Copy csproj file and restore
+COPY BasicPaymentGateway.csproj ./
 RUN dotnet restore BasicPaymentGateway.csproj
+
+# Copy the rest of the app and publish
 COPY . .
 RUN dotnet publish BasicPaymentGateway.csproj -c Release -o /app/publish
 
