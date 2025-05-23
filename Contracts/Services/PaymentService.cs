@@ -33,7 +33,7 @@ namespace BasicPaymentGateway.Contracts.Services
                 var Key = _configuration.GetSection("Pay_Stack_Details:Test_secret").Value;
                 if (BaseUrl == null)
                 {
-                    throw new Exception("No url or base-endpoint provided");
+                    throw new Exception("No url or base endpoint provided");
                 }
                 var endpoint = $"{BaseUrl}transaction/{transactionId}";
 
@@ -75,7 +75,7 @@ namespace BasicPaymentGateway.Contracts.Services
                 var Key = _configuration.GetSection("Pay_Stack_Details:Test_secret").Value;
                 if(BaseUrl == null)
                 {
-                    throw new Exception("No url or base-endpoint provided");
+                    throw new Exception("No url or base endpoint provided");
                 }
                 var endpoint = $"{BaseUrl}transaction/initialize";
               
