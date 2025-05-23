@@ -50,7 +50,6 @@ namespace BasicPaymentGateway.Contracts.Services
                 var finalResult = new FetchPaymentResponse
                 {
                     message = initiate.message,
-                    status = initiate.status.ToString(),
                     payment = new Payment
                     {
                         id = initiate.data.id.ToString(),
@@ -133,8 +132,7 @@ namespace BasicPaymentGateway.Contracts.Services
                     throw new Exception("Payment gateway verification response did not contain expected data.");
                 }
                 var fetchPaymentResponse = new FetchPaymentResponse
-                {
-                    status = fullVerificationResponse.status.ToString(), 
+                { 
                     message = fullVerificationResponse.message,
                     payment = new Payment
                     {

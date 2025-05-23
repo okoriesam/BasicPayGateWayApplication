@@ -3,7 +3,6 @@
     public class FetchPaymentResponse
     {
         public Payment payment { get; set; }
-        public string? status { get; set; }
         public string? message { get; set; }
     }
 
