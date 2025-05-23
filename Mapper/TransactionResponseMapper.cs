@@ -8,7 +8,6 @@ namespace BasicPaymentGateway.Mapper
         {
             CreateMap<BasicPaymentGateway.Entity.Transaction, BasicPaymentGateway.Common.ResponseModel.FetchPaymentResponse>()
        .ForMember(dest => dest.payment, opt => opt.MapFrom(src => src)) 
-       .ForMember(dest => dest.status, opt => opt.MapFrom(src => src.status))
        .ForMember(dest => dest.message, opt => opt.MapFrom(src => "Transaction fetched successfully")); 
             ;
 
