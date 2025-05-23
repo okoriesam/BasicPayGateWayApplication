@@ -72,7 +72,7 @@ namespace BasicPaymentGateway.Contracts.Services
             try
             {
                 var BaseUrl = _configuration.GetSection("PayStackDetails:PaystackUrl").Value;
-                var Key = _configuration.GetSection("PayStackDetails:Test_secret").Value;
+                var Key = _configuration.GetSection("PayStackDetails:Testsecret").Value;
                 if(BaseUrl == null)
                 {
                     throw new Exception("No url or base endpoint provided");
